@@ -14,8 +14,7 @@ public class LoginPage {
 	private WebDriver driver;
 	private ElementUtil eleUtil;
 	
-	int i=10;
-	
+
 	
 	private final By emailID = By.id("input-email");
 	private final By password = By.id("input-password");
