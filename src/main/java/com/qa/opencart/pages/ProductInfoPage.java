@@ -30,6 +30,8 @@ public class ProductInfoPage {
 	private final By productAvail = By.xpath("//li[contains(text(),'Availability')]");
 	private final By productMetadata =By.xpath("//div[@id='content']//ul[@class='list-unstyled'][1]");
 	private final By productPricedata = By.xpath("//div[@id='content']//ul[@class='list-unstyled'][2]");
+	private final By addtocart = By.linkText("Add to Cart");
+	private final By shoppingcart = By.linkText("Shopping Cart");
 	
 
 	public String getProductHeader()
@@ -99,9 +101,24 @@ public class ProductInfoPage {
 		
 		productMap.put("Product price", priceInfo);
 		productMap.put("etax Vlaue", eTaxvalue);
-		
 			
 		}
+	
+	public void AddtoCart()
+	{
+		WebElement cartProduct = eleUtil.waitForElementVisible(addtocart,AppConstants.DEFAULT_SHORT_WAIT);
+		System.out.println(cartProduct+ "Product added to the cart");
+	}
+	
+	
+	public CartPage gotoCartPage()
+	{
+		WebElement tocart = eleUtil.waitForElementVisible(shoppingcart,AppConstants.DEFAULT_SHORT_WAIT);
+		eleUtil.doClick(shoppingcart);
+		return new CartPage();
+	}
+	
+	
 	}
 	
 	
