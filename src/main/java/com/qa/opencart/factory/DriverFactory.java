@@ -85,14 +85,47 @@ public class DriverFactory {
 	
 	public Properties initProp() {
 		prop = new Properties();
-		try {
-			FileInputStream ip = new FileInputStream("./scr/test/resources/config/config.properties");
-			prop.load(ip);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		FileInputStream ip =null;
+		String  envName = System.getProperty("env").trim();
+		log.info("Env Name" + envName);
+		try
+		{
+		if(envName ==null)
+		{
+			log.info("No env passed, Running on QA environment by default");
+			ip = new FileInputStream("./scr/test/resources/config/config.qa.properties");
+		}
+		
+		else
+		{
+			switch (envName.trim()) {
+			case "qa": 
+				ip = new FileInputStream("./scr/test/resources/config/config.qa.properties");
+				break;
+			case "prod":
+				ip = new FileInputStream("./scr/test/resources/config/config.prod.properties");
+			
+			default:
+				log.error("Env value is invalid.. pls pass the right env");
+				throw new FrameworkException("====INVALID ENV====");
+			}
+		}
+		}
+		catch (FileNotFoundException e)
+		{
 			e.printStackTrace();
 		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		try {
+			prop.load(ip);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
 		return prop;
 	}
 	
