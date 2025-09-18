@@ -3,7 +3,7 @@
 
 
 <suite name="Opencart App Test Regression Suite" verbose="4"
-	thread-count="5" parallel="tests">
+	thread-count="2" parallel="tests">
 
 
 
@@ -35,7 +35,7 @@
 
 	
 	<test name="ProductInfo Page Test">
-		<parameter name="browser" value="edge" />
+		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.ProductInfoPageTest" />
 		</classes>
