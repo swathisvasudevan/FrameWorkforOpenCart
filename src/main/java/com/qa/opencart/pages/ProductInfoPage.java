@@ -115,7 +115,7 @@ public class ProductInfoPage {
 	{
 		WebElement tocart = eleUtil.waitForElementVisible(shoppingcart,AppConstants.DEFAULT_SHORT_WAIT);
 		eleUtil.doClick(shoppingcart);
-		return new CartPage();
+		return new CartPage(driver);
 	}
 	
 	
