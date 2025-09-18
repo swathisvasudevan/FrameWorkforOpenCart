@@ -118,6 +118,7 @@
 			</plugin>
 
 
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -126,13 +127,14 @@
 				<configuration>
 					<forkCount>3</forkCount>
 					<reuseForks>true</reuseForks>
-
-
-						<suiteXmlFiles>
-						 <suiteXmlFile>scr\test\resources\testdata\testrunners\testng_regression.xml</suiteXmlFile>
-						<!--<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
+					
+					
+					<suiteXmlFiles>
+						 <!-- <suiteXmlFile>src/test/resources/testrunners/testng_sanity.xml</suiteXmlFile> -->
+						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
 					</suiteXmlFiles>
-
+					
+					
 					<argLine>
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
 					</argLine>
@@ -148,9 +150,11 @@
 				</dependencies>
 
 			</plugin>
-
+			
 
 		</plugins>
 
 	</build>
+	
+
 </project>
