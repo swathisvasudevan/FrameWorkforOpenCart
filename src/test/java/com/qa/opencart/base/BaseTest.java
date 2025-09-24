@@ -10,6 +10,7 @@ import org.testng.annotations.Optional;
 
 import com.qa.opencart.factory.DriverFactory;
 import com.qa.opencart.pages.AccountPage;
+import com.qa.opencart.pages.CartPage;
 import com.qa.opencart.pages.LoginPage;
 import com.qa.opencart.pages.ProductInfoPage;
 import com.qa.opencart.pages.ProductListingPage;
@@ -25,19 +26,25 @@ public class BaseTest {
 	protected AccountPage accntPage;
 	protected ProductListingPage prodListPage;
 	protected ProductInfoPage ProdInfoPage;
+	protected CartPage cartPage;
 	
 	
 	@Description("Driver Initalization")
 	@BeforeTest
-	public void setup(@Optional("Chrome")String browsername)
-	{
-		df=new DriverFactory();
+	
+	public void setUp(@Optional("chrome") String browserName) {
+		df = new DriverFactory();
 		prop = df.initProp();
 		
+			if(browserName!=null) {
+				prop.setProperty("browser", browserName);
+			}
 		
 		driver = df.initDriver(prop);
 		loginpage = new LoginPage(driver);	
 	}
+	
+	
 	@Description("Quitting Driver")
 	@AfterTest
 	
